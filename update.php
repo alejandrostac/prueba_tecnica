@@ -32,6 +32,7 @@
                     }
                 }
                 if(isset($data['pass'])){
+                    $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
                     $query.= "pass='".$data['pass']."' ,";
                 }
                 if(isset($data['img'])){

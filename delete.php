@@ -8,6 +8,12 @@
             $result = $mysqli->query("SELECT * FROM usuarios WHERE id = '".$data['id']."'");
             $rows = mysqli_num_rows($result);
             if($rows > 0){
+                $row = $result -> fetch_row();
+                if($row[5] != null){
+                    if(file_exists("images/".$row[5])){
+                        unlink("images/".$row[5]);
+                    }
+                }
                 $result = $mysqli->query("DELETE FROM `usuarios` WHERE id = '".$data['id']."';");
                 echo json_encode(array(
                     'status' => 200,

@@ -11,6 +11,7 @@
                     $content = file_get_contents($data['img']);
                     file_put_contents('images/'.$img_name, $content);
                     try {
+                        $data['pass'] = password_hash($data['pass'], PASSWORD_DEFAULT);
                         $result = $mysqli->query("INSERT INTO usuarios (name, lastname, email, pass,img) VALUES ('".$data['name']."', '".$data['lastname']."', '".$data['email']."', '".$data['pass']."', '".$img_name."');");
                         echo json_encode(array(
                             'status' => 200,
